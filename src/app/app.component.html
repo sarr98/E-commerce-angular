@@ -1,0 +1,56 @@
+<!-- <input type="text" name="" id="" value="{{title}}" disabled="{{trouve}}">
+<h1 textContent="{{title}}"></h1>
+<p innerHtml="{{titleHtml}}"></p> -->
+
+<!-- <input type="text" name="" id="" [value]="title" [disabled]="trouve">
+<h1 [textContent]="title"></h1>
+<p [innerHtml]="titleHtml"></p> -->
+
+<!-- <input type="text" name="" id="" (keyup)="getValue($event)">
+<span>{{value}}</span> -->
+<!-- 
+<input type="text" name="" id="" [(ngModel)]="value">
+<span>{{value}}</span> -->
+
+<!-- <span *ngIf="nombre%2==0">Je suis affiché avec condition</span> -->
+
+<!-- <ng-template [ngIf]="nombre%2==0">
+<span>Je suis affiché avec condition</span>
+</ng-template> -->
+
+<!-- <span *ngIf="nombre%2==0; else elseBlock">Le nombre est pair</span>
+<ng-template #elseBlock>
+    <span>Le nombre est impair</span>
+</ng-template> -->
+
+<!-- <ng-container *ngIf="nombre%2==0; then blockVrai else blockFaux"></ng-container>
+    <ng-template #blockVrai>
+        <span>Le nombre est pair</span>
+    </ng-template>
+    <ng-template #blockFaux>
+        <span>Le nombre est impair</span>
+    </ng-template>
+ -->
+
+<!-- <ul *ngIf="nombres.length>0">
+    <li *ngFor="let nbre of nombres">{{nbre}}</li>
+</ul> -->
+
+<!-- <ng-container *ngIf="nombres.length>0">
+    <p  *ngFor="let nbre of nombres">{{nbre}}</p>
+</ng-container> -->
+
+<!-- <ng-container *ngIf="numbers.length>0">
+    <p *ngFor="let nbre of numbers">{{nbre}}</p>
+</ng-container> -->
+
+<!-- 
+<input type="text" #msg>
+
+<button (click)="onEnvoiMessage(msg.value)">En</button> -->
+
+<app-menu></app-menu>
+<app-header></app-header>
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>

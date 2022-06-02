@@ -1,0 +1,85 @@
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" [src]="product?.pathImg" alt="..." /></div>
+            <div class="col-md-6">
+                <div class="small mb-1">{{product?.categorie?.name}}</div>
+                <h1 class="display-5 fw-bolder">{{product?.name}}</h1>
+                <div class="fs-5 mb-5">
+                    <span *ngIf="product?.isSolde" class="text-muted text-decoration-line-through">{{product?.oldPrice}}</span>
+                            
+                            <ng-container *ngIf="product?.isSolde; then isSolde else notSolde"></ng-container>
+                                <ng-template #isSolde>
+                                    {{product?.newPrice}}
+                                </ng-template>
+                                <ng-template #notSolde>
+                                    {{product?.oldPrice}}
+                            </ng-template>
+                </div>
+                <p class="lead">{{product?.description}}</p>
+                <div class="d-flex">
+                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" #qteComde (keyup)="onValideQuantite(qteComde.value)">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="button" (click)="onAddToPanier(product,qteComde.value)"
+                    [disabled]="isNull">
+                        <i class="bi-cart-fill me-1"></i>
+                        Add to cart
+                    </button>
+                </div>
+                <span *ngIf="isInvalide" class="text-danger">{{message}}</span>
+            </div>
+        </div>
+    </div>
+ </section>
+ <!-- Related items section-->
+ <section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4">Produits de la categorie {{product?.categorie?.name}}</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <ng-container *ngIf="products.length>0">
+                <div class="col mb-5" *ngFor="let product of products">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        <div *ngIf="product.isSolde" class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                        <!-- Product image-->
+                        <img class="card-img-top" [src]="product.pathImg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{product.name}}</h5>
+                                <!-- Product reviews-->
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div>
+                                <!-- Product price-->
+                                <span *ngIf="product.isSolde" class="text-muted text-decoration-line-through">{{product.oldPrice}}</span>
+                                
+                                <ng-container *ngIf="product.isSolde; then isSolde else notSolde"></ng-container>
+                                    <ng-template #isSolde>
+                                        {{product.newPrice}}
+                                    </ng-template>
+                                    <ng-template #notSolde>
+                                        {{product.oldPrice}}
+                                </ng-template>
+    
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="row">
+                                <div class="text-center col-4"><a class="btn btn-sm btn-outline-dark"
+                                    (click)="onLoadView(product)">Details</a></div>
+                                <div class="text-center col-8"><a class="btn btn-sm btn-outline-dark" href="#">Ajout panier</a></div>
+                            </div>
+                            
+                        </div>
+                    </div>  
+                </div>
+                </ng-container>
+        </div>
+    </div>
+ </section>
